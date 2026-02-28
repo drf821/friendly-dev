@@ -1,5 +1,6 @@
 import type { Route } from "./+types/index";
 import { useEffect } from "react";
+import Hero from "~/components/Hero";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -8,10 +9,8 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function Home() {
-    useEffect(() => {
-        console.log(window.scrollX);
-    }, [])
-  return <section>My App</section>;
-
+export default function Home(){
+    return <section>
+        <Hero name='Daniel' />
+    </section>   
 }

@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "all": "concurrently \"npm run json-server\" \"npm run dev\"",
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
@@ -24,6 +25,7 @@
     "@types/node": "^22",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "concurrently": "^9.2.1",
     "json-server": "^1.0.0-beta.12",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2",

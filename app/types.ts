@@ -7,4 +7,4 @@ export type Project = {
     date: string;
     category: string;
     featured: boolean;
-}
+};

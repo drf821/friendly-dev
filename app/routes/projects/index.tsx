@@ -1,5 +1,6 @@
 import type { Route } from "./+types/index";
 import type { Project } from "~/types";
+import ProjectCard from "~/components/ProjectCard";
 
 export async function loader({ request }: Route.LoaderArgs):Promise<{projects:Project[]}> {
     const res = await fetch('http://localhost:8000/projects');
@@ -17,16 +18,7 @@ const ProjectsPage = ({loaderData}: Route.ComponentProps) => {
 
             <div className="grid gap-6 sm:grid-cols-2">
                 {projects.map((project)=>(
-                <div 
-                    key={project.id} 
-                    className="bg-gray-800 border border-gray-700 rounded-lg overflow-hidden shadow-sm transition hover:shadow-md"
-                >
-                    <img 
-                        src={project.image} 
-                        alt={project.title} 
-                        className="w-full h-40 object-cover" 
-                    />
-                </div>
+                <ProjectCard key={project.id} project={project} />
             ))}
             </div>
         </> 

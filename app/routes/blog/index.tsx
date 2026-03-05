@@ -1,7 +1,8 @@
-import { a, article } from "framer-motion/client";
+import { useState } from "react";
 import type {Route} from "./+types/index";
 import type {PostMeta} from "~/types";
 import PostCard from "~/components/PostCard";
+import Pagination from "~/components/Pagination";
 
 export async function loader({request}: Route.LoaderArgs):Promise<{posts: PostMeta[]}>{
     const url = new URL('/posts-meta.json', request.url);
@@ -22,16 +23,30 @@ export async function loader({request}: Route.LoaderArgs):Promise<{posts: PostMe
 }
 
 const BlogPage = ({loaderData}: Route.ComponentProps) => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const postsPerPage = 10;
+    
     const {posts} = loaderData;
 
-    console.log(posts);
+    const totalPages = Math.ceil(posts.length / postsPerPage);
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
     return ( 
         <div className="max-w-3xl mx-auto mt-10 px-6 bg-gray-900">
             <h2 className="text-3xl font-bold text-white mb-8">Blog</h2>
-            {posts.map((post) => (
+            {currentPosts.map((post) => (
                 <PostCard key={post.slug} post={post}/>
             ))}
+
+            {totalPages > 1 && (
+                <Pagination 
+                    currentPage={currentPage} 
+                    totalPages={totalPages} 
+                    onPageChange={(page) => setCurrentPage(page)} 
+                />
+            )}
         </div> 
     );
 }

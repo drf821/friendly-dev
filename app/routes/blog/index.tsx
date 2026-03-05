@@ -11,6 +11,11 @@ export async function loader({request}: Route.LoaderArgs):Promise<{posts: PostMe
         throw new Error("Failed to fetch data");
     }    
         const data = await res.json();
+
+        data.sort((a: PostMeta, b: PostMeta) => {
+            return new Date(b.date).getTime() - new Date(a.date).getTime();
+        });
+
         return {posts: data};
     
 

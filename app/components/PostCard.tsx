@@ -1,7 +1,7 @@
-import type { PostMeta } from "~/types";
+import type { Post } from "~/types";
 import { Link } from "react-router";
 
-const PostCard = ({post}: {post: PostMeta}) => {
+const PostCard = ({post}: {post: Post}) => {
     return (
         <article 
             key={post.slug} 
@@ -9,6 +9,13 @@ const PostCard = ({post}: {post: PostMeta}) => {
             <h3 className="text-2xl font-semibold text-blue-400">{post.title}</h3>
             <p className="text-sm text-gray-400 mb-2">
             {new Date(post.date).toDateString()}
+            {post.image && (
+                <img 
+                    src={post.image} 
+                    alt={post.title} 
+                    className='w-full h-48 object-cover rounded mb-4' 
+                />
+            )}
             </p>
             <p className="text-gray-300 mb-4">{post.excerpt}</p>
             <Link 

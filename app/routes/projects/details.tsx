@@ -44,7 +44,7 @@ const ProjectDetailsPage = ({loaderData}:Route.ComponentProps) => {
         <>
         <Link 
         to='/projects' 
-        className="='flex items-center text-blue-400 hover:text-blue-500 mb-6 transition">
+        className="flex items-center text-blue-400 hover:text-blue-500 mb-6 transition">
             <FaArrowLeft className="mr-2" /> Back To Projects
         </Link>
         <div>
@@ -64,8 +64,8 @@ const ProjectDetailsPage = ({loaderData}:Route.ComponentProps) => {
                 <p className="text-gray-200 mb-6">{project.description}</p>
                 <a 
                 href={project.url} 
-                target="_blank" rel="noopener noreferrer" className="inline-block text-white bg-blue-600 hover:text-blue-700 px-6 py-2 rounded transition">
-                    View Live Sight -
+                target="_blank" rel="noopener noreferrer" className="inline-block text-white bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded transition">
+                    View Live Site
                 </a>
             </div>
         </div>
